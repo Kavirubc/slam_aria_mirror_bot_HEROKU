@@ -317,14 +317,14 @@ class GoogleDriveHelper:
             if meta.get("mimeType") == self.__G_DRIVE_DIR_MIME_TYPE:
                 dir_id = self.create_directory(meta.get('name'), parent_id)
                 result = self.cloneFolder(meta.get('name'), meta.get('name'), meta.get('id'), dir_id)
-                msg += f'<b>➩ 🌀 Folder Name :</b> <code>{meta.get("name")}</code>\n\n<b>➩ 💾 Total Size :</b> {get_readable_file_size(self.transferred_size)}\n\n<b>#Folder Cloned To Team Drive ✅</b>\n\n<b>➩ 🗳 𝗣𝗼𝘄𝗲𝗿𝗲𝗱 𝗕𝘆 @AT_BOTS</b>\n\n<b>⚠ 𝗗𝗢 𝗡𝗢𝗧 <u>𝗦𝗛𝗔𝗥𝗘</u> 𝗜𝗡𝗗𝗘𝗫 𝗟𝗜𝗡𝗞 𝗣𝗨𝗕𝗟𝗜𝗖𝗟𝗬 ⚠</b>'
+                msg += f'<b>➩ 🌀 Folder Name :</b> <code>{meta.get("name")}</code>\n\n<b>➩ 💾 Total Size :</b> {get_readable_file_size(self.transferred_size)}\n\n<b>Folder Cloned To Team Drive ✅</b></b>'
                 durl = self.__G_DRIVE_DIR_BASE_DOWNLOAD_URL.format(dir_id)
                 buttons = button_build.ButtonMaker()
                 if SHORTENER is not None and SHORTENER_API is not None:
                     surl = requests.get('https://{}/api?api={}&url={}&format=text'.format(SHORTENER, SHORTENER_API, durl)).text
-                    buttons.buildbutton("🌍 𝗚-𝗗𝗥𝗜𝗩𝗘 𝗟𝗜𝗡𝗞 🌍", surl)
+                    buttons.buildbutton("G-Drive link", surl)
                 else:
-                    buttons.buildbutton("🌍 𝗚-𝗗𝗥𝗜𝗩𝗘 𝗟𝗜𝗡𝗞 🌍", durl)
+                    buttons.buildbutton("G-Drive link", durl)
                 if INDEX_URL is not None:
                     url = requests.utils.requote_uri(f'{INDEX_URL}/{meta.get("name")}/')
                     if SHORTENER is not None and SHORTENER_API is not None:
